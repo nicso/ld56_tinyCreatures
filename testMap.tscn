@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://3pt7kop4huxs"]
+
+[ext_resource type="Texture2D" uid="uid://c2ghngajjgf3f" path="res://gfx/env/map01.png" id="1_tu43c"]
+[ext_resource type="PackedScene" uid="uid://b1qu1myxa7hor" path="res://player.tscn" id="2_wsias"]
+
+[node name="TestMap" type="Node2D"]
+
+[node name="Map01" type="Sprite2D" parent="."]
+position = Vector2(1833, 966)
+texture = ExtResource("1_tu43c")
+
+[node name="player" parent="." instance=ExtResource("2_wsias")]
+position = Vector2(1270, 1025)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(699, 412)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(75, -117, -181, -102, -189, 15, -114, 107, 151, 85, 146, -75)

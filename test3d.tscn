@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://v3xm3tcap17d"]
+
+[ext_resource type="PackedScene" uid="uid://t6ld8a5sm8bg" path="res://player3d.tscn" id="1_qfg31"]
+[ext_resource type="Texture2D" uid="uid://24lyj4wswesx" path="res://2024-10-05 09.15.13.png" id="2_0h0yk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1ebqv"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_wftvi"]
+sky_material = SubResource("ProceduralSkyMaterial_1ebqv")
+
+[sub_resource type="Environment" id="Environment_1jkou"]
+background_mode = 2
+sky = SubResource("Sky_wftvi")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8pmk2"]
+albedo_color = Color(0.336608, 0.336608, 0.336608, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mmvnb"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_n6602"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_f7tgs"]
+
+[node name="Test3d" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1jkou")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player3d" parent="." instance=ExtResource("1_qfg31")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.38502, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 9.265, 10)
+projection = 1
+size = 22.385
+far = 34.44
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(2.94003, 0, 0, 0, 2.94003, 0, 0, 0, 2.94003, 0, -3.38322, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_8pmk2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_mmvnb")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.09083, -1.30707, 5.49436)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(2.7884, 0, 0, 0, 4.08866, 0, 0, 0, 2.7884, -10.6952, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("CylinderShape3D_n6602")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("CylinderMesh_f7tgs")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2.52379, 0, 0, 0, 2.52379, 0, 0, 0, 2.52379, 0, 2.59746, 0)
+texture = ExtResource("2_0h0yk")

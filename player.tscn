@@ -1,0 +1,336 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1qu1myxa7hor"]
+
+[ext_resource type="Script" path="res://MicrobeController.gd" id="1_684w0"]
+[ext_resource type="Script" path="res://Microbe.gd" id="2_5jph1"]
+
+[node name="player" type="Node2D"]
+position = Vector2(461, 382)
+script = ExtResource("1_684w0")
+max_separation_distance = 50.0
+cohesion_strength = 0.2
+separation_strength = 5000.0
+alignment_strength = 0.1
+max_speed = 800.0
+steering_force = 110.0
+acceleration = 4000.0
+deceleration = 0.1
+max_move_speed = 3000.0
+connection_distance = 800.0
+connection_color = Color(0, 0, 0, 1)
+connection_width = 3.0
+
+[node name="microbe" type="CharacterBody2D" parent="."]
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe2" type="CharacterBody2D" parent="."]
+position = Vector2(-97, -42)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe3" type="CharacterBody2D" parent="."]
+position = Vector2(-78, 38)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe4" type="CharacterBody2D" parent="."]
+position = Vector2(-163, 46)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe5" type="CharacterBody2D" parent="."]
+position = Vector2(-195, -44)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe6" type="CharacterBody2D" parent="."]
+position = Vector2(-136, -120)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe7" type="CharacterBody2D" parent="."]
+position = Vector2(-21, -99)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe8" type="CharacterBody2D" parent="."]
+position = Vector2(-59, -171)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe9" type="CharacterBody2D" parent="."]
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe10" type="CharacterBody2D" parent="."]
+position = Vector2(-97, -42)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe11" type="CharacterBody2D" parent="."]
+position = Vector2(-78, 38)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe12" type="CharacterBody2D" parent="."]
+position = Vector2(-163, 46)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe13" type="CharacterBody2D" parent="."]
+position = Vector2(-195, -44)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe14" type="CharacterBody2D" parent="."]
+position = Vector2(-136, -120)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe15" type="CharacterBody2D" parent="."]
+position = Vector2(-21, -99)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe16" type="CharacterBody2D" parent="."]
+position = Vector2(-59, -171)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe17" type="CharacterBody2D" parent="."]
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe18" type="CharacterBody2D" parent="."]
+position = Vector2(-97, -42)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe19" type="CharacterBody2D" parent="."]
+position = Vector2(-78, 38)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe20" type="CharacterBody2D" parent="."]
+position = Vector2(-163, 46)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe21" type="CharacterBody2D" parent="."]
+position = Vector2(-195, -44)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe22" type="CharacterBody2D" parent="."]
+position = Vector2(-136, -120)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe23" type="CharacterBody2D" parent="."]
+position = Vector2(-21, -99)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe24" type="CharacterBody2D" parent="."]
+position = Vector2(-59, -171)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe25" type="CharacterBody2D" parent="."]
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe26" type="CharacterBody2D" parent="."]
+position = Vector2(-97, -42)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe27" type="CharacterBody2D" parent="."]
+position = Vector2(-78, 38)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe28" type="CharacterBody2D" parent="."]
+position = Vector2(-163, 46)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe29" type="CharacterBody2D" parent="."]
+position = Vector2(-195, -44)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe30" type="CharacterBody2D" parent="."]
+position = Vector2(-136, -120)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe31" type="CharacterBody2D" parent="."]
+position = Vector2(-21, -99)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
+
+[node name="microbe32" type="CharacterBody2D" parent="."]
+position = Vector2(-59, -171)
+script = ExtResource("2_5jph1")
+mass = 0.4
+friction = 0.8
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.8
+speed_variation = 30.0
