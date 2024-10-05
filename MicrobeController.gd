@@ -20,7 +20,7 @@ class_name MicrobeController
 @export var connection_color: Color = Color(0.2, 0.8, 0.3, 0.3)
 @export var connection_width: float = 2.0
 @export var connection_fade_distance: float = 70.0
-
+var center := Vector2.ZERO
 # Internal variables
 var microbes: Array = []
 var connections_node: Node2D
@@ -30,7 +30,7 @@ var movement_velocity: Vector2 = Vector2.ZERO  # Current movement velocity
 var numOfMicrobeFloating := 0
 var gravity := 0.0
 @export var gravityForce := 0 #1000
-
+var input_direction
 
 func _ready():
 	for child in get_children():
@@ -93,7 +93,7 @@ func _physics_process(delta):
 		return
 	
 	# Get input direction
-	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	# Apply smooth acceleration
 	if input_direction != Vector2.ZERO:
@@ -104,7 +104,7 @@ func _physics_process(delta):
 		movement_velocity = movement_velocity.lerp(Vector2.ZERO, 1.0 - pow(deceleration, delta * 60))
 	
 	# Calculate center of mass
-	var center = Vector2.ZERO
+	center = Vector2.ZERO
 	for microbe in microbes:
 		center += microbe.position
 	center /= microbes.size()
@@ -127,7 +127,7 @@ func _physics_process(delta):
 		if not microbe.isGrounded:
 			numOfMicrobeFloating += 1
 		
-		microbe.distanceFromCenter = microbe.position.distance_to(center+(input_direction)) 
+		microbe.distanceFromCenter = microbe.position.distance_to(center+(input_direction*3)) 
 		gravity = 1600 * (numOfMicrobeFloating / (microbes.size() / 2))
 		gravity = clamp(gravity,0,gravityForce)
 		forces.y += gravity
@@ -143,8 +143,9 @@ func _physics_process(delta):
 func _calculate_cohesion(microbe: CharacterBody2D, center: Vector2) -> Vector2:
 	var desired_velocity = center - microbe.position
 	if not microbe.move_and_slide():
-		desired_velocity.x = (center.x - microbe.position.x) * 0.2
-		desired_velocity.y = (center.y - microbe.position.y) * 0.9
+		desired_velocity.x = (center.x - microbe.position.x) * 0.4 + (randf() - 0.5) * 40
+		desired_velocity.y = (center.y - microbe.position.y) * 0.9 + (randf() - 0.5) * 40
+		desired_velocity += input_direction * 50
 	return (desired_velocity - microbe.velocity) * steering_force
 
 func _calculate_separation(microbe: CharacterBody2D) -> Vector2:

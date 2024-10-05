@@ -30,7 +30,7 @@ func _ready():
 	_sprite = Sprite2D.new()
 	_sprite.texture = _create_microbe_texture()
 	_sprite.y_sort_enabled = true
-	_sprite.z_index = 3
+	_sprite.z_index = 0
 	add_child(_sprite)
 	
 	# Create collision shape
@@ -73,7 +73,7 @@ func _physics_process(delta):
 	_sprite.scale = Vector2(pulse_scale, pulse_scale)
 
 func apply_force(force: Vector2):
-	_accumulated_force += force * (distanceFromCenter * 0.002) * acceleration
+	_accumulated_force += force * (distanceFromCenter * 0.0025) * acceleration
 
 func _create_microbe_texture() -> Texture2D:
 	var image = Image.create(100, 100, false, Image.FORMAT_RGBA8)

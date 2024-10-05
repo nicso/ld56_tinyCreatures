@@ -5,7 +5,7 @@
 
 [sub_resource type="Gradient" id="Gradient_pyx7q"]
 offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.710741, 0.710741, 0.710741, 1)
+colors = PackedColorArray(0.28485, 0.28485, 0.28485, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ki5hd"]
 gradient = SubResource("Gradient_pyx7q")
@@ -14,7 +14,7 @@ gradient = SubResource("Gradient_pyx7q")
 script = ExtResource("2_15kcq")
 _edge_meta_materials = Array[ExtResource("1_b3123")]([])
 fill_textures = Array[Texture2D]([SubResource("GradientTexture1D_ki5hd")])
-fill_texture_z_index = -10
+fill_texture_z_index = 0
 fill_texture_show_behind_parent = false
 fill_texture_scale = 1.0
 fill_texture_absolute_position = false
