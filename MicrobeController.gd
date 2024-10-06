@@ -30,7 +30,7 @@ var movement_velocity: Vector2 = Vector2.ZERO  # Current movement velocity
 var numOfMicrobeFloating := 0
 var input_direction
 @export var microbes_number := 60
-@export var max_distance_from_center := 300
+@export var max_distance_from_center := 400
 
 
 
@@ -59,9 +59,11 @@ func _process(_delta):
 	if Input.is_action_pressed("regroup"):
 		cohesion_strength = 0.3
 		max_separation_distance = 20
+		separation_strength = 2000
 	else:
 		cohesion_strength = 0.15
 		max_separation_distance = 90
+		separation_strength = 600
 	update_connections()
 	print(microbes.size())
 
