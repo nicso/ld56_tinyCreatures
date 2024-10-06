@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://lxvnpi170p7f"]
+
+[ext_resource type="Script" path="res://Microbe.gd" id="1_xbksx"]
+[ext_resource type="Texture2D" uid="uid://bqjeqtfhuyjqc" path="res://gfx/creature.png" id="2_qpehv"]
+
+[sub_resource type="Animation" id="Animation_q1v2e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_f1cmg"]
+resource_name = "wriggle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 2.19737, 4.53262, -4.31445, -1.19031]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_owpk2"]
+_data = {
+"RESET": SubResource("Animation_q1v2e"),
+"wriggle": SubResource("Animation_f1cmg")
+}
+
+[sub_resource type="Gradient" id="Gradient_qjwwi"]
+offsets = PackedFloat32Array(0.537688, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nroi7"]
+gradient = SubResource("Gradient_qjwwi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tci01"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = -0.2
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_nroi7")
+
+[node name="microbe" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_xbksx")
+mass = 0.4
+friction = 0.0
+acceleration = 0.1
+base_size = 10.0
+size_variation = 0.27
+speed_variation = 30.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_owpk2")
+}
+autoplay = "wriggle"
+speed_scale = 1.4
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0476452, 0.0476452)
+texture = ExtResource("2_qpehv")
+
+[node name="microbe_particles" type="GPUParticles2D" parent="."]
+z_index = -1
+process_material = SubResource("ParticleProcessMaterial_tci01")
+trail_enabled = true
+trail_lifetime = 0.6

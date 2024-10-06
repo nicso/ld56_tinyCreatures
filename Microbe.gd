@@ -23,15 +23,8 @@ var _pulse_time: float = 0.0
 var isGrounded := false
 var distanceFromCenter := 0.0
 
-var gravity := 0.0
 
 func _ready():
-	# Create the visual representation
-	_sprite = Sprite2D.new()
-	_sprite.texture = _create_microbe_texture()
-	_sprite.y_sort_enabled = true
-	_sprite.z_index = 0
-	add_child(_sprite)
 	
 	# Create collision shape
 	_collision = CollisionShape2D.new()
@@ -59,51 +52,13 @@ func _physics_process(delta):
 	velocity = velocity.lerp(Vector2.ZERO, friction * delta)
 	
 	isGrounded = move_and_slide()
-	gravity = 0
-	if not isGrounded :
-		gravity = 150 * delta * distanceFromCenter
-	gravity = clamp(gravity,0, gravityForce)
-	velocity.y += gravity
 	# Move the microbe
 	move_and_slide()
 	
-	# Update pulsing animation
-	_pulse_time += delta * 3.0
-	var pulse_scale = 1.0 + sin(_pulse_time) * 0.1
-	_sprite.scale = Vector2(pulse_scale, pulse_scale)
 
 func apply_force(force: Vector2):
 	_accumulated_force += force * (distanceFromCenter * 0.0025) * acceleration
 
-func _create_microbe_texture() -> Texture2D:
-	var image = Image.create(100, 100, false, Image.FORMAT_RGBA8)
-	image.fill(Color(0, 0, 0, 0))
-	
-	# Draw the main body with a softer gradient
-	var center = Vector2(50, 50)
-	var radius = 25
-	
-	for x in range(-radius, radius + 1):
-		for y in range(-radius, radius + 1):
-			var pos = Vector2(x, y)
-			var distance = pos.length()
-			if distance <= radius:
-				var alpha = pow(1.0 - (distance / radius), 18) * color.a  # Squared falloff for softer edges
-				var pixel_color = color
-				pixel_color.a = alpha
-				image.set_pixel(
-					center.x + x,
-					center.y + y,
-					pixel_color
-				)
-	
-	# Create and return the texture
-	var texture = ImageTexture.create_from_image(image)
-	return texture
-
-func set_color(new_color: Color):
-	color = new_color
-	_sprite.texture = _create_microbe_texture()
 
 func get_size() -> float:
 	return base_size * scale.x

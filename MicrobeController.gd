@@ -28,21 +28,42 @@ var connection_lines: Dictionary = {}
 var movement_velocity: Vector2 = Vector2.ZERO  # Current movement velocity
 
 var numOfMicrobeFloating := 0
-var gravity := 0.0
-@export var gravityForce := 0 #1000
 var input_direction
+@export var microbes_number := 60
+@export var max_distance_from_center := 300
 
-func _ready():
+
+
+func spawn_microbe():
+	var microbe = preload("res://microbe.tscn").instantiate()
+	if microbes.size() > 10 :
+		var part = microbe.get_child(2) as GPUParticles2D
+		part.emitting = false
+	microbe.position = center
+	add_child(microbe)
 	for child in get_children():
-		if child.has_method("apply_force"):
-			microbes.append(child)
-	
+			if child.has_method("apply_force"):
+				if not microbes.has(child):
+					microbes.append(child)
 	connections_node = Node2D.new()
 	connections_node.name = "Connections"
 	add_child(connections_node)
 
+func _ready():
+	for n in microbes_number:
+		spawn_microbe()
+
 func _process(_delta):
+	if Input.is_action_just_pressed("spawn"):
+		spawn_microbe()
+	if Input.is_action_pressed("regroup"):
+		cohesion_strength = 0.3
+		max_separation_distance = 20
+	else:
+		cohesion_strength = 0.15
+		max_separation_distance = 90
 	update_connections()
+	print(microbes.size())
 
 func update_connections():
 	# Clear old connections
@@ -64,7 +85,7 @@ func update_connections():
 				# Set line properties
 				line.width = connection_width
 				line.default_color = connection_color
-				line.z_index = 0
+				line.z_index = 10
 				line.y_sort_enabled = true
 				
 				# Calculate opacity based on distance
@@ -128,9 +149,9 @@ func _physics_process(delta):
 			numOfMicrobeFloating += 1
 		
 		microbe.distanceFromCenter = microbe.position.distance_to(center+(input_direction*3)) 
-		gravity = 1600 * (numOfMicrobeFloating / (microbes.size() / 2))
-		gravity = clamp(gravity,0,gravityForce)
-		forces.y += gravity
+		if microbe.distanceFromCenter > max_distance_from_center:
+			killMicrobe(microbe)
+		
 		# Apply combined forces to microbe
 		microbe.apply_force(forces)
 		
@@ -159,7 +180,7 @@ func _calculate_separation(microbe: CharacterBody2D) -> Vector2:
 		if distance < max_separation_distance:
 			var repulsion = microbe.position - other.position
 			separation_force += repulsion.normalized() / max(distance * 0.5, 0.1)
-	
+		
 	return separation_force
 
 func _calculate_alignment(microbe: CharacterBody2D) -> Vector2:
@@ -174,3 +195,8 @@ func _calculate_alignment(microbe: CharacterBody2D) -> Vector2:
 		average_velocity /= (microbes.size() - 1)
 		return (average_velocity - microbe.velocity) * steering_force
 	return Vector2.ZERO
+
+func killMicrobe(microbe: CharacterBody2D):
+	microbes.remove_at(microbes.rfind(microbe))
+	microbe.queue_free()
+	
